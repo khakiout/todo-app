@@ -20,6 +20,7 @@
       <li data-ng-repeat="task in tasks | filter : {state:STATE_TODO} | orderBy: 'todoStamp'">
         <span data-ng-bind="task.name"></span>
         <span>{{ task.todoStamp | date}}</span>
+        <span data-ng-click="promoteTask(task)">Up</span>
       </li>
     </ul>
   </section>
@@ -27,9 +28,10 @@
   <section id="wip">
     <header>WIP</header>
     <ul>
-      <li data-ng-repeat="task in tasks | filter : {state:STATE_WIP} | orderBy: 'todoStamp'">
+      <li data-ng-repeat="task in tasks | filter : {state:STATE_WIP} | orderBy: 'wipStamp'">
         <span data-ng-bind="task.name"></span>
-        <span>{{ task.todoStamp | date}}</span>
+        <span>{{ task.wipStamp | date}}</span>
+        <span data-ng-click="promoteTask(task)">Up</span>
       </li>
     </ul>
   </section>
@@ -37,9 +39,9 @@
   <section id="done">
     <header>Done</header>
     <ul>
-      <li data-ng-repeat="task in tasks | filter : {state:STATE_DONE} | orderBy: 'todoStamp'">
+      <li data-ng-repeat="task in tasks | filter : {state:STATE_DONE} | orderBy: 'doneStamp'">
         <span data-ng-bind="task.name"></span>
-        <span>{{ task.todoStamp | date}}</span>
+        <span>{{ task.doneStamp | date}}</span>
       </li>
     </ul>
   </section>

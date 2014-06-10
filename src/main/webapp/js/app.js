@@ -22,16 +22,21 @@ angular.module('todoApp', [])
         {
         	name : 'Buy Grocery',
         	todoStamp : new Date('06/06/2014').getTime(),
+        	wipStamp: new Date('06/07/2014').getTime(),
         	state : $scope.STATE_WIP
         },
         {
         	name : 'Cook Breakfast',
         	todoStamp : new Date('06/06/2014').getTime(),
+        	wipStamp: new Date('06/07/2013').getTime(),
+        	doneStamp: new Date('06/07/2013').getTime(),
         	state : $scope.STATE_DONE
         },
         {
         	name : 'Prepare Room',
-        	todoStamp : new Date('06/06/2014').getTime(),
+        	todoStamp : new Date('06/06/2013').getTime(),
+        	wipStamp: new Date('06/07/2013').getTime(),
+        	doneStamp: new Date('06/12/2013').getTime(),
         	state : $scope.STATE_DONE
         }
       ];
@@ -46,6 +51,17 @@ angular.module('todoApp', [])
 				
 				$scope.tasks.push(task);
 				delete $scope.newTask;
+			}
+			
+			$scope.promoteTask = function(task) {
+				console.log(task.state);
+				if (task.state == $scope.STATE_TODO) {
+					task.wipStamp = new Date().getTime();
+					task.state = $scope.STATE_WIP;
+				} else if (task.state == $scope.STATE_WIP) {
+					task.doneStamp = new Date().getTime();
+					task.state = $scope.STATE_DONE;
+				}
 			}
 		}]
 	);
