@@ -4,48 +4,55 @@
 
 <head>
   <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
   <title>To-do</title>
+  
+  <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
 </head>
 
 <body data-ng-controller="todoCtrl">
-  <section id="input">
-    <form name="add-task" data-ng-submit="addTask()">
-      <input type="text" data-ng-model="newTask" required />
-    </form>
-  </section>
+  <div class="container">
   
-  <section id="todo">
-    <header>To-Do</header>
-    <ul>
-      <li data-ng-repeat="task in tasks | filter : {state:STATE_TODO} | orderBy: 'todoStamp'">
-        <span data-ng-bind="task.name"></span>
-        <span>{{ task.todoStamp | date}}</span>
-        <span data-ng-click="promoteTask(task)">Up</span>
-      </li>
-    </ul>
-  </section>
-  
-  <section id="wip">
-    <header>WIP</header>
-    <ul>
-      <li data-ng-repeat="task in tasks | filter : {state:STATE_WIP} | orderBy: 'wipStamp'">
-        <span data-ng-bind="task.name"></span>
-        <span>{{ task.wipStamp | date}}</span>
-        <span data-ng-click="promoteTask(task)">Up</span>
-      </li>
-    </ul>
-  </section>
-  
-  <section id="done">
-    <header>Done</header>
-    <ul>
-      <li data-ng-repeat="task in tasks | filter : {state:STATE_DONE} | orderBy: 'doneStamp'">
-        <span data-ng-bind="task.name"></span>
-        <span>{{ task.doneStamp | date}}</span>
-      </li>
-    </ul>
-  </section>
-  
+    <section id="input" class="col-md-10 col-md-offset-1">
+      <form name="add-task" data-ng-submit="addTask()">
+        <input type="text" data-ng-model="newTask" placeholder="Add Task" required class="form-control"/>
+      </form>
+    </section>
+    
+    <section id="todo" class="col-md-4">
+      <h4>To-Do</h4>
+      <ul>
+        <li data-ng-repeat="task in tasks | filter : {state:STATE_TODO} | orderBy: 'todoStamp'">
+          <span data-ng-bind="task.name"></span>
+          <span>{{ task.todoStamp | date}}</span>
+          <span data-ng-click="promoteTask(task)">Up</span>
+        </li>
+      </ul>
+    </section>
+    
+    <section id="wip" class="col-md-4">
+      <h4>WIP</h4>
+      <ul>
+        <li data-ng-repeat="task in tasks | filter : {state:STATE_WIP} | orderBy: 'wipStamp'">
+          <span data-ng-bind="task.name"></span>
+          <span>{{ task.wipStamp | date}}</span>
+          <span data-ng-click="promoteTask(task)">Up</span>
+        </li>
+      </ul>
+    </section>
+    
+    <section id="done" class="col-md-4">
+      <h4>Done</h4>
+      <ul>
+        <li data-ng-repeat="task in tasks | filter : {state:STATE_DONE} | orderBy: 'doneStamp'">
+          <span data-ng-bind="task.name"></span>
+          <span>{{ task.doneStamp | date}}</span>
+        </li>
+      </ul>
+    </section>
+  </div>
+<!--   <script src="lib/bootstrap/bootstrap.min.js"></script> -->
   <script src="lib/angular/angular.min.js" ></script>
   <script src="js/app.js" ></script>
 </body>
