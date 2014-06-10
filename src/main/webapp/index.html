@@ -9,8 +9,8 @@
 
 <body data-ng-controller="todoCtrl">
   <section id="input">
-    <form name="add-task">
-      <input type="text" name="task" required />
+    <form name="add-task" data-ng-submit="addTask()">
+      <input type="text" data-ng-model="newTask" required />
     </form>
   </section>
   
