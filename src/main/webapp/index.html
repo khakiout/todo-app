@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html>
+
+<html lang="en" data-ng-app="todoApp">
+
 <head>
   <meta charset="utf-8">
   <title>To-do</title>
 </head>
 
-<body>
-
+<body data-ng-controller="todoCtrl">
   <section id="input">
     <form name="add-task">
       <input type="text" name="task" required />
@@ -16,26 +17,34 @@
   <section id="todo">
     <header>To-Do</header>
     <ul>
-      <li>Wash clothes
-      <li>Finish report
+      <li data-ng-repeat="task in tasks | filter : {state:STATE_TODO} | orderBy: 'todoStamp'">
+        <span data-ng-bind="task.name"></span>
+        <span>{{ task.todoStamp | date}}</span>
+      </li>
     </ul>
   </section>
   
   <section id="wip">
     <header>WIP</header>
     <ul>
-      <li>Buy soap
+      <li data-ng-repeat="task in tasks | filter : {state:STATE_WIP} | orderBy: 'todoStamp'">
+        <span data-ng-bind="task.name"></span>
+        <span>{{ task.todoStamp | date}}</span>
+      </li>
     </ul>
   </section>
   
   <section id="done">
     <header>Done</header>
     <ul>
-      <li>Cook breakfast
-      <li>Prepare room
+      <li data-ng-repeat="task in tasks | filter : {state:STATE_DONE} | orderBy: 'todoStamp'">
+        <span data-ng-bind="task.name"></span>
+        <span>{{ task.todoStamp | date}}</span>
+      </li>
     </ul>
   </section>
   
   <script src="lib/angular/angular.min.js" ></script>
+  <script src="js/app.js" ></script>
 </body>
 </html>
