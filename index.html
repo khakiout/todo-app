@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html lang="en" data-ng-app="todoApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  <title>To-do</title>
+  
+  <link rel="stylesheet" href="src/main/webapp/css/bootstrap/bootstrap.min.css">
+  <style>
+    .card > div {
+      min-height: 500px;
+      border-radius: 5px;
+      padding: 15px;
+    }
+    #todo > div {
+      background: lightblue;
+    }
+    #wip > div {
+      background: yellow;
+    }
+    #done > div {
+      background: lightgreen;
+    }
+    .task {
+      cursor: pointer;
+    }
+    .task:hover {
+      color: blue;
+    }
+  </style>
+</head>
+
+<body data-ng-controller="todoCtrl">
+  <div class="container">
+  
+    <header class="row">
+      <div class="col-md-12">
+        <h1>To-Do app</h1>
+      </div>
+    </header>
+  
+    <section id="input" class="row">
+      <form name="add-task" data-ng-submit="addTask()" class="col-md-10 col-md-offset-1" role="form">
+        <div class="form-group input-group">
+          <input type="text" data-ng-model="newTask" placeholder="Add Task" required class="form-control"/>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-plus form-control-feedback"></span></button>
+          </span>
+        </div>
+      </form>
+    </section>
+    
+    <div class="row">
+      <section id="todo" class="col-md-4 card">
+        <div>
+          <h4>To-Do</h4>
+          <ul>
+            <li data-ng-repeat="task in tasks | filter : {state:STATE_TODO} | orderBy: 'todoStamp'" class="task">
+              <div data-ng-click="promoteTask(task)">
+                <strong><span data-ng-bind="task.name"></span></strong>
+                <span class="glyphicon glyphicon-circle-arrow-right"></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+      
+      <section id="wip" class="col-md-4 card">
+        <div>
+          <h4>WIP</h4>
+          <ul>
+            <li data-ng-repeat="task in tasks | filter : {state:STATE_WIP} | orderBy: 'wipStamp'" class="task">
+              <div data-ng-click="promoteTask(task)">
+                <strong><span data-ng-bind="task.name"></span></strong>
+                <span class="glyphicon glyphicon-circle-arrow-right"></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+      
+      <section id="done" class="col-md-4 card">
+        <div>
+          <h4>Done</h4>
+          <ul>
+            <li data-ng-repeat="task in tasks | filter : {state:STATE_DONE} | orderBy: 'doneStamp'" class="task">
+              <div data-ng-click="deleteTask(task)">
+                <strong><span data-ng-bind="task.name"></span></strong>
+                <span class="glyphicon glyphicon-remove-circle"></span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    
+    <!-- footer -->
+    <footer role="contentinfo" class="row">
+      <div class="col-md-12">
+        <p>Crafted by <a href="http://khakiout.com" target="_blank" title="khakiot's website">@khakiout</a> 2014
+      </div>
+    </footer>
+  </div>
+  
+<!--   <script src="lib/bootstrap/bootstrap.min.js"></script> -->
+  <script src="src/main/webapp/lib/angular/angular.min.js" ></script>
+  <script src="src/main/webapp/js/app.js" ></script>
+</body>
+</html>
