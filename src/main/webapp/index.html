@@ -9,47 +9,80 @@
   <title>To-do</title>
   
   <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+  <style>
+    .card {
+      padding: 5px;
+    }
+    .card > div {
+      min-height: 500px;
+      border-radius: 5px;
+      padding: 15px;
+    }
+    #todo > div {
+      background: lightblue;
+    }
+    #wip > div {
+      background: yellow;
+    }
+    #done > div {
+      background: lightgreen;
+    }
+    .task:hover {
+      color: blue;
+    }
+  </style>
 </head>
 
 <body data-ng-controller="todoCtrl">
   <div class="container">
   
-    <section id="input" class="col-md-10 col-md-offset-1">
-      <form name="add-task" data-ng-submit="addTask()">
-        <input type="text" data-ng-model="newTask" placeholder="Add Task" required class="form-control"/>
+    <section id="input" class="col-md-10 col-md-offset-1 row">
+      <form name="add-task" data-ng-submit="addTask()" class="form-horizontal" role="form">
+        <div class="form-group input-group">
+          <input type="text" data-ng-model="newTask" placeholder="Add Task" required class="form-control"/>
+          <span class="input-group-btn">
+            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-plus form-control-feedback"></span></button>
+          </span>
+        </div>
       </form>
     </section>
     
-    <section id="todo" class="col-md-4">
-      <h4>To-Do</h4>
-      <ul>
-        <li data-ng-repeat="task in tasks | filter : {state:STATE_TODO} | orderBy: 'todoStamp'">
-          <span data-ng-bind="task.name"></span>
-          <span>{{ task.todoStamp | date}}</span>
-          <span data-ng-click="promoteTask(task)">Up</span>
-        </li>
-      </ul>
+    <section id="todo" class="col-md-4 card">
+      <div>
+        <h4>To-Do</h4>
+        <ul>
+          <li data-ng-repeat="task in tasks | filter : {state:STATE_TODO} | orderBy: 'todoStamp'" class="task">
+            <strong><span data-ng-bind="task.name"></span></strong>
+  <!--           <span>{{ task.todoStamp | date}}</span> -->
+            <span data-ng-click="promoteTask(task)" class="glyphicon glyphicon-circle-arrow-right"></span>
+          </li>
+        </ul>
+      </div>
     </section>
     
-    <section id="wip" class="col-md-4">
-      <h4>WIP</h4>
-      <ul>
-        <li data-ng-repeat="task in tasks | filter : {state:STATE_WIP} | orderBy: 'wipStamp'">
-          <span data-ng-bind="task.name"></span>
-          <span>{{ task.wipStamp | date}}</span>
-          <span data-ng-click="promoteTask(task)">Up</span>
-        </li>
-      </ul>
+    <section id="wip" class="col-md-4 card">
+      <div>
+        <h4>WIP</h4>
+        <ul>
+          <li data-ng-repeat="task in tasks | filter : {state:STATE_WIP} | orderBy: 'wipStamp'" class="task">
+            <strong><span data-ng-bind="task.name"></span></strong>
+  <!--           <span>{{ task.wipStamp | date}}</span> -->
+            <span data-ng-click="promoteTask(task)" class="glyphicon glyphicon-circle-arrow-right"></span>
+          </li>
+        </ul>
+      </div>
     </section>
     
-    <section id="done" class="col-md-4">
-      <h4>Done</h4>
-      <ul>
-        <li data-ng-repeat="task in tasks | filter : {state:STATE_DONE} | orderBy: 'doneStamp'">
-          <span data-ng-bind="task.name"></span>
-          <span>{{ task.doneStamp | date}}</span>
-        </li>
-      </ul>
+    <section id="done" class="col-md-4 card">
+      <div>
+        <h4>Done</h4>
+        <ul>
+          <li data-ng-repeat="task in tasks | filter : {state:STATE_DONE} | orderBy: 'doneStamp'" class="task">
+            <strong><span data-ng-bind="task.name"></span></strong>
+  <!--           <span>{{ task.doneStamp | date}}</span> -->
+          </li>
+        </ul>
+      </div>
     </section>
   </div>
 <!--   <script src="lib/bootstrap/bootstrap.min.js"></script> -->
