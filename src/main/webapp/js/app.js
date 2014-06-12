@@ -63,5 +63,12 @@ angular.module('todoApp', [])
 					task.state = $scope.STATE_DONE;
 				}
 			}
+			
+			$scope.deleteTask = function(task) {
+				var index = $scope.tasks.indexOf(task);
+				console.log('deleting task with index: ' + index);
+				
+				$scope.tasks.splice(index, 1);
+			}
 		}]
 	);

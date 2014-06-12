@@ -87,8 +87,9 @@
           <h4>Done</h4>
           <ul>
             <li data-ng-repeat="task in tasks | filter : {state:STATE_DONE} | orderBy: 'doneStamp'" class="task">
-              <div>
+              <div data-ng-click="deleteTask(task)">
                 <strong><span data-ng-bind="task.name"></span></strong>
+                <span class="glyphicon glyphicon-remove-circle"></span>
               </div>
             </li>
           </ul>
