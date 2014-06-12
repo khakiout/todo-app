@@ -10,49 +10,83 @@
   
   <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
   <style>
+    body {
+      color: #3f3f3f;
+    }
     .card > div {
       min-height: 500px;
       border-radius: 5px;
       padding: 15px;
+      margin: 5px 0;
     }
     #todo > div {
-      background: lightblue;
+      background: #add8e6;
     }
     #wip > div {
-      background: yellow;
+      background: #ffff00;
     }
     #done > div {
-      background: lightgreen;
+      background: #90ee90;
     }
     .task {
       cursor: pointer;
     }
     .task:hover {
-      color: blue;
+      color: #189148;
+    }
+    
+    /* Sticky footer styles
+    -------------------------------------------------- */
+    html {
+      position: relative;
+      min-height: 100%;
+    }
+    body {
+      /* Margin bottom by footer height */
+      margin-bottom: 40px;
+    }
+    #header {
+      background: #f5f5f5;
+      border-bottom: 1px dashed #ccc;
+      margin-bottom: 10px;
+    }
+    #footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      /* Set the fixed height of the footer here */
+      height: 30px;
+      line-height: 30px;
+      border-top: 1px dashed #ccc;
+      background-color: #f5f5f5;
     }
   </style>
 </head>
 
 <body data-ng-controller="todoCtrl">
-  <div class="container">
-  
-    <header class="row">
-      <div class="col-md-12">
-        <h1>To-Do app</h1>
-      </div>
-    </header>
-  
-    <section id="input" class="row">
-      <form name="add-task" data-ng-submit="addTask()" class="col-md-10 col-md-offset-1" role="form">
-        <div class="form-group input-group">
-          <input type="text" data-ng-model="newTask" placeholder="Add Task" required class="form-control"/>
-          <span class="input-group-btn">
-            <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-plus form-control-feedback"></span></button>
-          </span>
+
+  <header id="header" role="header">
+    <div class="container">
+      <section class="row">
+        <div class="col-md-12">
+          <h3>Don't forget!</h3>
         </div>
-      </form>
-    </section>
+      </section>
     
+      <section id="input" class="row">
+        <form name="add-task" data-ng-submit="addTask()" class="col-md-10 col-md-offset-1" role="form">
+          <div class="form-group input-group">
+            <input type="text" data-ng-model="newTask" placeholder="Add Task" required class="form-control"/>
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="submit"><span class="glyphicon glyphicon-plus form-control-feedback"></span></button>
+            </span>
+          </div>
+        </form>
+      </section>
+    </div>
+  </header>  
+    
+  <div class="container">
     <div class="row">
       <section id="todo" class="col-md-4 card">
         <div>
@@ -96,14 +130,18 @@
         </div>
       </section>
     </div>
-    
-    <!-- footer -->
-    <footer role="contentinfo" class="row">
-      <div class="col-md-12">
-        <p>Crafted by <a href="http://khakiout.com" target="_blank" title="khakiot's website">@khakiout</a> 2014
-      </div>
-    </footer>
   </div>
+
+  <!-- footer -->
+  <footer id="footer" role="contentinfo">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          Crafted by <a href="http://khakiout.com" target="_blank" title="khakiout's website">@khakiout</a> 2014
+        </div>
+      </div>
+    </div>
+  </footer>
   
 <!--   <script src="lib/bootstrap/bootstrap.min.js"></script> -->
   <script src="lib/angular/angular.min.js" ></script>
