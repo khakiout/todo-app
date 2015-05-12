@@ -91,42 +91,42 @@
       <section id="todo" class="col-md-4 card">
         <div>
           <h4>To-Do</h4>
-          <ul>
+          <ol>
             <li data-ng-repeat="task in tasks | filter : {state:STATE_TODO} | orderBy: 'todoStamp'" class="task">
               <div data-ng-click="promoteTask(task)">
                 <strong><span data-ng-bind="task.name"></span></strong>
                 <span class="glyphicon glyphicon-circle-arrow-right"></span>
               </div>
             </li>
-          </ul>
+          </ol>
         </div>
       </section>
       
       <section id="wip" class="col-md-4 card">
         <div>
           <h4>WIP</h4>
-          <ul>
+          <ol>
             <li data-ng-repeat="task in tasks | filter : {state:STATE_WIP} | orderBy: 'wipStamp'" class="task">
               <div data-ng-click="promoteTask(task)">
                 <strong><span data-ng-bind="task.name"></span></strong>
                 <span class="glyphicon glyphicon-circle-arrow-right"></span>
               </div>
             </li>
-          </ul>
+          </ol>
         </div>
       </section>
       
       <section id="done" class="col-md-4 card">
         <div>
           <h4>Done</h4>
-          <ul>
+          <ol>
             <li data-ng-repeat="task in tasks | filter : {state:STATE_DONE} | orderBy: 'doneStamp'" class="task">
               <div data-ng-click="deleteTask(task)">
                 <strong><span data-ng-bind="task.name"></span></strong>
                 <span class="glyphicon glyphicon-remove-circle"></span>
               </div>
             </li>
-          </ul>
+          </ol>
         </div>
       </section>
     </div>
@@ -137,7 +137,7 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          Crafted by <a href="http://khakiout.com" target="_blank" title="khakiout's website">@khakiout</a> 2014
+          Crafted by <a href="http://khakiout.com" target="_blank" title="khakiout's website">@khakiout</a> 2015
         </div>
       </div>
     </div>
